@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-10">
+    <%= form_tag(search_home_index_path, remote: true, method: 'POST') do %>
+      <% @genres.each do |genre| %>
+        <div class='col-lg-3'>
+          <%= check_box_tag "genre_ids[]", genre.id, false, class: 'form-check-input', id: genre.id %> 
+          <%= genre.title %>
+        </div>
+      <% end %>
+      <hr>
+      <div class='col-lg-10'>
+        <%= submit_tag "Filter", class: "btn btn-info" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10" id="search-result">
+    <%= render partial: 'search', locals: { users: @users } %>
+  </div>
+</div>
